@@ -14,7 +14,7 @@ function getExtensionsElements() {
     ...asserted(
       document
         .querySelector('body > extensions-manager')
-        ?.shadowRoot?.querySelector('#itemsList')
+        ?.shadowRoot?.querySelector('#itemsList, #items-list')
         ?.shadowRoot?.querySelector('div[class="items-container"]')
         ?.querySelectorAll('extensions-item'),
     ),
