@@ -1,5 +1,126 @@
-import { asserted } from '../node_modules/@jeniex/utils/browser/index.js';
-import './my-mouse-gestures.js';
+/**
+ * Asserts that an object is neither `null` nor `undefined` and returns it.
+ *
+ * If the object is `null` or `undefined`, a `TypeError` is thrown.
+ * Otherwise, the object is returned with its type narrowed to `T`.
+ *
+ * @template T The type of the object.
+ *
+ * @param object The object to validate.
+ *
+ * @returns The validated object, narrowed to `T`.
+ *
+ * @throws {TypeError} If the object is `null` or `undefined`.
+ *
+ * @example
+ * const object: string | undefined = Math.random() < 0.5 ? undefined : 'Hello';
+ *
+ * const string = asserted(object);
+ *
+ * // `object` is now typed as `string`.
+ * console.log(string.length);
+ */
+function asserted(object) {
+    if (object === null || object === undefined) {
+        throw new TypeError('object is either null or undefined');
+    }
+    return object;
+}
+
+// https://greasyfork.org/en/scripts/4776-my-mouse-gestures
+
+// ==UserScript==
+// @name               My Mouse Gestures
+// @name:zh-CN         我的鼠标手势
+// @name:zh-TW         我的滑鼠手勢
+// @description        A simple mouse gesture script
+// @description:zh-CN  一个简单的鼠标手势脚本
+// @description:zh-TW  一個簡單的滑鼠手勢腳本
+// @version            0.1.8
+// @include            *
+// @run-at             document-start
+// @grant              GM_openInTab
+// @grant              window.close
+// @namespace          https://greasyfork.org/users/4968
+// @license            MIT
+// ==/UserScript==
+
+// --- Settings ---
+
+const SENSITIVITY = 3; // 1 ~ 5
+const TOLERANCE = 3; // 1 ~ 5
+
+const funcs = {
+  U: function () {
+    document
+      .querySelector('body > extensions-manager')
+      ?.shadowRoot?.querySelector('#container')
+      ?.scrollTo(0, 0);
+  },
+  D: function () {
+    document
+      .querySelector('body > extensions-manager')
+      ?.shadowRoot?.querySelector('#container')
+      ?.scrollTo(0, 1073741824);
+  },
+};
+
+// ----------------
+
+const s = 1 << ((7 - SENSITIVITY) << 1);
+const t1 = Math.tan(0.15708 * TOLERANCE),
+  t2 = 1 / t1;
+
+let x, y, path;
+
+const tracer = function (e) {
+  let cx = e.clientX,
+    cy = e.clientY,
+    deltaX = cx - x,
+    deltaY = cy - y,
+    distance = deltaX * deltaX + deltaY * deltaY;
+  if (distance > s) {
+    let slope = Math.abs(deltaY / deltaX),
+      direction = '';
+    if (slope > t1) {
+      direction = deltaY > 0 ? 'D' : 'U';
+    } else if (slope <= t2) {
+      direction = deltaX > 0 ? 'R' : 'L';
+    }
+    if (path.charAt(path.length - 1) !== direction) {
+      path += direction;
+    }
+    x = cx;
+    y = cy;
+  }
+};
+
+window.addEventListener(
+  'mousedown',
+  function (e) {
+    if (e.which === 3) {
+      x = e.clientX;
+      y = e.clientY;
+      path = '';
+      window.addEventListener('mousemove', tracer, false);
+    }
+  },
+  false,
+);
+
+window.addEventListener(
+  'contextmenu',
+  function (e) {
+    window.removeEventListener('mousemove', tracer, false);
+    if (path !== '') {
+      e.preventDefault();
+      if (funcs.hasOwnProperty(path)) {
+        funcs[path]();
+      }
+    }
+  },
+  false,
+);
 
 /**
  * @typedef {{

@@ -27,6 +27,7 @@
   },
   "include": [
     "./node_modules/@jeniex/utils/browser/index.d.ts",
+    "rollup.config.mjs",
     "src"
   ]
 }
