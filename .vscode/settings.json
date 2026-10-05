@@ -6,6 +6,6 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
-    "package.json": ".gitignore, tsconfig.json, pnpm-lock.yaml, .prettierrc.json"
+    "package.json": ".gitignore, tsconfig.json, pnpm-lock.yaml, .prettierrc.json, .prettier-embedded.json"
   }
 }

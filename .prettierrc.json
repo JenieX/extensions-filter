@@ -17,10 +17,19 @@
   "trailingComma": "all",
   "useTabs": false,
 
-  "plugins": ["prettier-plugin-jsdoc"   ],
+  "plugins": ["prettier-plugin-embed", "prettier-plugin-jsdoc"],
   "jsdocCommentLineStrategy": "singleLine",
   "jsdocPreferCodeFences": false,
   "jsdocSingleLineComment": true,
+
+  "embeddedCssTags": ["tpl.css"],
+  "embeddedEsTags": ["tpl.js"],
+  "embeddedHtmlTags": ["tpl.vue", "tpl.test", "tpl.html"],
+  "embeddedJsonTags": ["tpl.json"],
+  "embeddedMarkdownTags": ["tpl.md"],
+  "embeddedTsTags": ["tpl.ts"],
+
+  "embeddedOverrides": "./.prettier-embedded.json",
 
   "overrides": [
     {

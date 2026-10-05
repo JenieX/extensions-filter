@@ -1,0 +1,50 @@
+[
+  {
+    "tags": ["tpl.vue"],
+    "options": {
+      "embeddedHtmlParser": "vue"
+    }
+  },
+  {
+    "tags": ["tpl.test"],
+    "options": {
+      "embeddedHtmlParser": "vue"
+    }
+  },
+  {
+    "tags": ["tpl.html"],
+    "options": {
+      "embeddedHtmlParser": "html"
+    }
+  },
+  {
+    "tags": ["tpl.ts"],
+    "options": {
+      "embeddedTsParser": "typescript"
+    }
+  },
+  {
+    "tags": ["tpl.js"],
+    "options": {
+      "embeddedEsParser": "babel"
+    }
+  },
+  {
+    "tags": ["tpl.json"],
+    "options": {
+      "embeddedJsonParser": "json"
+    }
+  },
+  {
+    "tags": ["tpl.css"],
+    "options": {
+      "embeddedCssParser": "css"
+    }
+  },
+  {
+    "tags": ["tpl.md"],
+    "options": {
+      "embeddedMarkdownParser": "markdown"
+    }
+  }
+]

@@ -3,6 +3,7 @@ import {
   sleep,
 } from '../node_modules/@jeniex/utils/browser/index.js';
 import './my-mouse-gestures.js';
+import { tpl } from './utils.js';
 
 /**
  * @typedef {{
@@ -76,23 +77,23 @@ function filterExtensionsElements(state) {
 
 const filter = document.createElement('div');
 
-filter.innerHTML = `
+filter.innerHTML = tpl.html`
   <input
     type="search"
     id="search"
     placeholder="Search extensions..."
     autocomplete="off"
     spellcheck="false"
-  >
+  />
 
   <div id="filter-options">
     <label>
-      <input type="checkbox" id="show-enabled" checked>
+      <input type="checkbox" id="show-enabled" checked />
       Enabled
     </label>
 
     <label>
-      <input type="checkbox" id="show-disabled" checked>
+      <input type="checkbox" id="show-disabled" checked />
       Disabled
     </label>
   </div>

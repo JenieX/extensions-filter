@@ -4,6 +4,7 @@
   },
   "devDependencies": {
     "prettier": "^3.9.9",
+    "prettier-plugin-embed": "^0.5.1",
     "prettier-plugin-jsdoc": "^1.8.1"
   }
 }
