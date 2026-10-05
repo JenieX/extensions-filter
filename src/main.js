@@ -1,4 +1,7 @@
-import { asserted } from '../node_modules/@jeniex/utils/browser/index.js';
+import {
+  asserted,
+  sleep,
+} from '../node_modules/@jeniex/utils/browser/index.js';
 import './my-mouse-gestures.js';
 
 /**
@@ -138,7 +141,7 @@ const showDisabled = /** @type {HTMLInputElement} */ (
 );
 
 // showEnabled.checked = false;
-// showDisabled.checked = false;
+showDisabled.checked = false;
 
 /** @type {State} */
 let state = {
@@ -173,5 +176,5 @@ search.addEventListener('input', () => {
   }, 500);
 });
 
-// await sleep(300);
-// filterExtensionsElements(state);
+await sleep(300);
+filterExtensionsElements(state);
